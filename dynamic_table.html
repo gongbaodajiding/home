@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        table {
+            width: 500px;
+            margin: 100px auto;
+            border-collapse: collapse;
+            text-align: center;
+        }
+
+        td,
+        th {
+            border: 1px solid #333;
+        }
+
+        thead tr {
+            height: 40px;
+            background-color: #ccc;
+        }
+    </style>
+</head>
+<body>
+<table>
+    <thead>
+    <tr>
+        <th>姓名</th>
+        <th>科目</th>
+        <th>成绩</th>
+        <th>操作</th>
+    </tr>
+    </thead>
+    <tbody>
+
+    </tbody>
+</table>
+<script>
+    let data = [{
+        name: '张三',
+        subject: 'JavaScript',
+        score: 100
+    }, {
+        name: '李四',
+        subject: 'JavaScript',
+        score: 98
+    }, {
+        name: '王五',
+        subject: 'JavaScript',
+        score: 99
+    }, {
+        name: '赵六',
+        subject: 'JavaScript',
+        score: 88
+    }];
+
+    let tbody = document.querySelector('tbody');
+    // 遍历数组，数组长度即要创建的行数
+    for (let i = 0; i < data.length; i++) {
+        let tr = document.createElement('tr');
+        tbody.appendChild(tr);
+        // 遍历对象中的属性，每个属性即为一个单元格，属性值即单元格值
+        for (let k in data[i]) {
+            let td = document.createElement('td');
+            td.innerHTML = data[i][k];
+            tr.appendChild(td);
+        }
+        let td = document.createElement('td');
+        td.innerHTML = '<a href="javascript:;">删除</a>';
+        tr.appendChild(td);
+    }
+    // 删除功能
+    let del = document.querySelector('tbody').querySelectorAll('a');
+    for (let i = 0; i < del.length; i++) {
+        del[i].onclick = function () {
+            tbody.removeChild(this.parentNode.parentNode);
+        };
+    }
+</script>
+</body>
+</html>
